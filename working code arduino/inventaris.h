@@ -42,7 +42,7 @@ extern Node *head;
 #define PRINT(teks)    serialPrintFlash(PSTR(teks))
 #define PRINTLN(teks)  do { serialPrintFlash(PSTR(teks)); serialPrintLn(); } while (0)
 
-/* Hardware dan serial */
+
 void initHardware(void);
 void serialPrintFlash(const char *p);
 void serialPrintStr(const char *s);
@@ -52,7 +52,7 @@ void serialPrintLn(void);
 void bacaString(char *buf, int maks);
 void bacaInt(int *out);
 
-/* Anggota 1 */
+
 void initSistem(void);
 void tambahData(void);
 void tampilSemua(void);
@@ -62,7 +62,7 @@ void cetakGaris(void);
 void cetakStatus(int st);
 void rebuildLinkedList(void);
 
-/* Anggota 2 */
+
 void cariNodeByID(const char *id, Node **out);
 void cariDataByID(void);
 void hapusNodeLL(const char *id);
@@ -74,7 +74,7 @@ void tampilRingkasan(void);
 void cekMemori(void);
 void cetakDetail(Node *n);
 
-/* Anggota 3 */
+
 void tampilMenu(void);
 void prosesMenu(char pilihan);
 void runProgram(void);

@@ -8,7 +8,6 @@ void rebuildLinkedList(void)
 {
     int i;
 
-    /* FIX: Simple in-place rebuild — no tempPool on stack (would overflow 2KB SRAM!) */
     if (poolUsed <= 0) {
         head = NULL;
         return;

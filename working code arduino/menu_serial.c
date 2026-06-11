@@ -29,7 +29,7 @@ void uartReadChar(char *out)
     }
 
     while ((UCSR0A & (1 << RXC0)) == 0) {
-        /* Menunggu input UART */
+        
     }
 
     *out = (char)UDR0;
@@ -38,7 +38,7 @@ void uartReadChar(char *out)
 void uartWriteChar(char c)
 {
     while ((UCSR0A & (1 << UDRE0)) == 0) {
-        /* Menunggu buffer transmit kosong */
+        
     }
 
     UDR0 = (unsigned char)c;
