@@ -75,7 +75,7 @@ void cariDataByID(void)
         return;
     }
 
-    PRINTLN("[OK] Barang ditemukan:");
+    PRINTLN("Barang ditemukan:");
     cetakDetail(hasil);
 }
 
@@ -90,11 +90,11 @@ void hapusNodeLL(const char *id)
             idx = (int)(curr - pool);
 
             if (curr == head) {
-                PRINTLN("  [INFO] Node pertama dihapus.");
+                PRINTLN(" Node pertama dihapus.");
             } else if (curr->next == NULL) {
-                PRINTLN("  [INFO] Node terakhir dihapus.");
+                PRINTLN(" Node terakhir dihapus.");
             } else {
-                PRINTLN("  [INFO] Node tengah dihapus.");
+                PRINTLN(" Node tengah dihapus.");
             }
 
             break;
@@ -150,13 +150,13 @@ void hapusDataByID(void)
     bacaString(konfirm, 2);
 
     if (konfirm[0] != 'y' && konfirm[0] != 'Y') {
-        PRINTLN("[INFO] Penghapusan dibatalkan.");
+        PRINTLN("Penghapusan dibatalkan.");
         return;
     }
 
     hapusNodeLL(idHapus);
 
-    PRINT("[OK] ID '");
+    PRINT("ID '");
     serialPrintStr(idHapus);
     PRINT("' berhasil dihapus. Slot terpakai: ");
     serialPrintInt(poolUsed);
@@ -179,10 +179,10 @@ void terapkanStok(Node *n, int stokBaru)
         PRINTLN("[WARN] Stok nol, status otomatis menjadi Habis.");
     } else if (n->status == ST_HABIS && stokBaru > 0) {
         n->status = ST_TERSEDIA;
-        PRINTLN("[INFO] Stok tersedia kembali, status menjadi Tersedia.");
+        PRINTLN("Stok tersedia kembali, status menjadi Tersedia.");
     }
 
-    PRINT("[OK] Stok '");
+    PRINT("Stok '");
     serialPrintStr(n->nama);
     PRINT("' sekarang = ");
     serialPrintInt(n->stok);
@@ -312,7 +312,7 @@ void updateStatus(void)
         PRINTLN("[WARN] Status Habis, stok otomatis diset menjadi 0.");
     }
 
-    PRINT("[OK] Status '");
+    PRINT("Status '");
     serialPrintStr(target->nama);
     PRINT("' berhasil diubah menjadi ");
     cetakStatus(target->status);
@@ -340,7 +340,7 @@ void tampilRingkasan(void)
     PRINTLN("================================================");
 
     if (head == NULL) {
-        PRINTLN("  [INFO] Inventaris masih kosong.");
+        PRINTLN(" Inventaris masih kosong.");
         PRINTLN("================================================");
         return;
     }
