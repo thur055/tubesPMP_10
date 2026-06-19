@@ -56,10 +56,10 @@ void cariDataByID(void)
     char idCari[MAX_ID_LEN];
     Node *hasil;
 
-    PRINTLN("\n[ CARI DATA ]");
+    PRINTLN("\n[FUNGSI: CARI DATA]");
 
     if (head == NULL) {
-        PRINTLN("[ERROR] Inventaris kosong.");
+        PRINTLN("Inventaris kosong.");
         return;
     }
 
@@ -69,7 +69,7 @@ void cariDataByID(void)
     cariNodeByID(idCari, &hasil);
 
     if (hasil == NULL) {
-        PRINT("[ERROR] ID '");
+        PRINT("ID '");
         serialPrintStr(idCari);
         PRINTLN("' tidak ditemukan.");
         return;
@@ -103,7 +103,7 @@ void hapusNodeLL(const char *id)
     }
 
     if (idx < 0 || idx >= poolUsed) {
-        PRINTLN("[ERROR] Node gagal dihapus.");
+        PRINTLN("Node gagal dihapus.");
         return;
     }
 
@@ -124,10 +124,10 @@ void hapusDataByID(void)
     char konfirm[2];
     Node *target;
 
-    PRINTLN("\n[ HAPUS DATA ]");
+    PRINTLN("\n[FUNGSI: HAPUS DATA]");
 
     if (head == NULL) {
-        PRINTLN("[ERROR] Inventaris kosong.");
+        PRINTLN("Inventaris kosong.");
         return;
     }
 
@@ -137,7 +137,7 @@ void hapusDataByID(void)
     cariNodeByID(idHapus, &target);
 
     if (target == NULL) {
-        PRINT("[ERROR] ID '");
+        PRINT("ID '");
         serialPrintStr(idHapus);
         PRINTLN("' tidak ditemukan.");
         return;
@@ -168,7 +168,7 @@ void hapusDataByID(void)
 void terapkanStok(Node *n, int stokBaru)
 {
     if (stokBaru < 0) {
-        PRINTLN("[ERROR] Stok tidak boleh negatif.");
+        PRINTLN("Stok tidak boleh negatif.");
         return;
     }
 
@@ -176,7 +176,7 @@ void terapkanStok(Node *n, int stokBaru)
 
     if (stokBaru == 0) {
         n->status = ST_HABIS;
-        PRINTLN("[WARN] Stok nol, status otomatis menjadi Habis.");
+        PRINTLN("Stok nol, status otomatis menjadi Habis.");
     } else if (n->status == ST_HABIS && stokBaru > 0) {
         n->status = ST_TERSEDIA;
         PRINTLN("Stok tersedia kembali, status menjadi Tersedia.");
@@ -197,10 +197,10 @@ void updateStok(void)
     long stokHitung;
     Node *target;
 
-    PRINTLN("\n[ UPDATE STOK ]");
+    PRINTLN("\n[FUNGSI: UPDATE STOK]");
 
     if (head == NULL) {
-        PRINTLN("[ERROR] Inventaris kosong.");
+        PRINTLN("Inventaris kosong.");
         return;
     }
 
@@ -210,7 +210,7 @@ void updateStok(void)
     cariNodeByID(idUp, &target);
 
     if (target == NULL) {
-        PRINT("[ERROR] ID '");
+        PRINT("ID '");
         serialPrintStr(idUp);
         PRINTLN("' tidak ditemukan.");
         return;
@@ -228,7 +228,7 @@ void updateStok(void)
     bacaString(op, 2);
 
     if (op[0] != '+' && op[0] != '-') {
-        PRINTLN("[ERROR] Operator tidak valid.");
+        PRINTLN("Operator tidak valid.");
         return;
     }
 
@@ -236,7 +236,7 @@ void updateStok(void)
     bacaInt(&jml);
 
     if (jml < 0) {
-        PRINTLN("[ERROR] Jumlah tidak boleh negatif.");
+        PRINTLN("Jumlah tidak boleh negatif.");
         return;
     }
 
@@ -247,7 +247,7 @@ void updateStok(void)
     }
 
     if (stokHitung < 0) {
-        PRINT("[ERROR] Stok tidak mencukupi. Tersedia: ");
+        PRINT("Stok tidak mencukupi. Tersedia: ");
         serialPrintInt(target->stok);
         PRINT(", diminta: ");
         serialPrintInt(jml);
@@ -256,7 +256,7 @@ void updateStok(void)
     }
 
     if (stokHitung > 32767L) {
-        PRINTLN("[ERROR] Nilai stok terlalu besar untuk Arduino Uno.");
+        PRINTLN("Nilai stok terlalu besar untuk Arduino Uno.");
         return;
     }
 
@@ -269,10 +269,10 @@ void updateStatus(void)
     int stBaru;
     Node *target;
 
-    PRINTLN("\n[ UPDATE STATUS ]");
+    PRINTLN("\n[FUNGSI: UPDATE STATUS]");
 
     if (head == NULL) {
-        PRINTLN("[ERROR] Inventaris kosong.");
+        PRINTLN("Inventaris kosong.");
         return;
     }
 
@@ -282,7 +282,7 @@ void updateStatus(void)
     cariNodeByID(idUp, &target);
 
     if (target == NULL) {
-        PRINT("[ERROR] ID '");
+        PRINT("ID '");
         serialPrintStr(idUp);
         PRINTLN("' tidak ditemukan.");
         return;
@@ -301,7 +301,7 @@ void updateStatus(void)
     bacaInt(&stBaru);
 
     if (stBaru < 0 || stBaru > 3) {
-        PRINTLN("[ERROR] Status tidak valid. Masukkan angka 0-3.");
+        PRINTLN("Status tidak valid. Masukkan angka 0-3.");
         return;
     }
 
@@ -309,7 +309,7 @@ void updateStatus(void)
 
     if (stBaru == ST_HABIS && target->stok > 0) {
         target->stok = 0;
-        PRINTLN("[WARN] Status Habis, stok otomatis diset menjadi 0.");
+        PRINTLN("Status Habis, stok otomatis diset menjadi 0.");
     }
 
     PRINT("Status '");
@@ -412,7 +412,7 @@ void tampilRingkasan(void)
     PRINTLN(" slot)");
 
     if (poolUsed >= WARN_THRESHOLD) {
-        PRINTLN("  [WARN] Memori hampir penuh.");
+        PRINTLN("Memori hampir penuh.");
     }
 
     PRINTLN("------------------------------------------------");
@@ -423,7 +423,7 @@ void tampilRingkasan(void)
     PRINTLN(" unit)");
 
     if (minStok == 0) {
-        PRINTLN("  [WARN] Ada barang dengan stok 0, segera restock.");
+        PRINTLN("Ada barang dengan stok 0, segera restock.");
     }
 
     PRINTLN("================================================");
@@ -432,7 +432,7 @@ void tampilRingkasan(void)
 void cekMemori(void)
 {
     if (poolUsed >= WARN_THRESHOLD) {
-        PRINT("[WARN] Memori hampir penuh: ");
+        PRINT("Memori hampir penuh: ");
         serialPrintInt(poolUsed);
         PRINT("/");
         serialPrintInt(MAX_NODES);
