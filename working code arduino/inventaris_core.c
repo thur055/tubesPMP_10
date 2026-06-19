@@ -159,7 +159,7 @@ void tambahData(void)
     PRINTLN("\n[ TAMBAH DATA ]");
 
     if (poolUsed >= MAX_NODES) {
-        PRINT("[ERROR] Kapasitas penuh: ");
+        PRINT("Kapasitas penuh: ");
         serialPrintInt(poolUsed);
         PRINT("/");
         serialPrintInt(MAX_NODES);
@@ -173,7 +173,7 @@ void tambahData(void)
     cariNodeByID(idBaru, &cekID);
 
     if (cekID != NULL) {
-        PRINT("[ERROR] ID '");
+        PRINT("ID '");
         serialPrintStr(idBaru);
         PRINTLN("' sudah ada. Gunakan ID unik.");
         return;
@@ -197,7 +197,7 @@ void tambahData(void)
     bacaInt(&newNode->stok);
 
     if (newNode->stok < 0) {
-        PRINTLN("[WARN] Stok negatif tidak valid, stok diset 0.");
+        PRINTLN("Stok negatif tidak valid, stok diset 0.");
         newNode->stok = 0;
     }
 
@@ -209,7 +209,7 @@ void tambahData(void)
     bacaInt(&newNode->status);
 
     if (newNode->status < 0 || newNode->status > 3) {
-        PRINTLN("[WARN] Status tidak valid, status diset Tersedia.");
+        PRINTLN("Status tidak valid, status diset Tersedia.");
         newNode->status = ST_TERSEDIA;
     }
 
@@ -225,7 +225,7 @@ void tambahData(void)
 
     rebuildLinkedList();
 
-    PRINT("[OK] Data '");
+    PRINT("Data '");
     serialPrintStr(newNode->nama);
     PRINTLN("' berhasil ditambahkan.");
 
