@@ -212,11 +212,11 @@ void prosesMenu(char pilihan)
             tampilRingkasan();
             break;
         case '0':
-            PRINTLN("[INFO] Reset sistem.");
+            PRINTLN("Reset sistem.");
             initSistem();
             break;
         default:
-            PRINT("[ERROR] Pilihan '");
+            PRINT("Pilihan '");
             serialPrintChar(pilihan);
             PRINTLN("' tidak valid.");
             break;
