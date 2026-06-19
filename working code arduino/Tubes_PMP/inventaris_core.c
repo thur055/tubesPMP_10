@@ -225,7 +225,7 @@ void tambahData(void)
 
     rebuildLinkedList();
 
-    PRINT("Data '");
+    PRINT("[OK] Data '");
     serialPrintStr(newNode->nama);
     PRINTLN("' berhasil ditambahkan.");
 
